@@ -59,7 +59,7 @@ def import_new_book_by_request(q):
                         columns += BOOKS_API_DATABASE[col_name]["name"] + ", "
                         array_value = "'{"
                         for v in result[col_name]:
-                            array_value += '"' + str(v).replace("'", "''") + '", '
+                            array_value += '"' + str(v).replace("'", "''").replace('"','') + '", '
                         values += str(array_value[:-2]) + "}', "
             columns = columns[:-2]
             values = values[:-2]
@@ -69,3 +69,4 @@ def import_new_book_by_request(q):
             conn.commit()
         cur.close()
         conn.close()
+
